@@ -1,11 +1,15 @@
-
+﻿
 /* ========================================
    MILITARY RP - Afghan War Documentation
-   Стили сайта
+   ????? ?????
    ======================================== */
 
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Montserrat:wght@700;800;900&family=Rajdhani:wght@400;500;600;700&family=Roboto+Mono:wght@600;700&family=Russo+One&display=swap');
+
+a {
+    text-decoration: none;
+}
 
 /* ========================================
    Custom Scrollbar (Military Style)
@@ -22,7 +26,7 @@
 
 ::-webkit-scrollbar-thumb {
     background: #334155;
-    border-radius: 0; /* Строгие углы */
+    border-radius: 0; /* ??????? ???? */
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -37,13 +41,13 @@
 :root {
     /* Fonts */
     --font-heading: 'Russo One', 'Rajdhani', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    --font-body: 'Rajdhani', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif; /* Changed from Rajdhani to Inter for better readability */
 
     /* Colors */
     --color-navy: #0d1521;
     --color-dark-blue: #1a2332;
     --color-khaki: #6b7c5e;
-    --color-khaki-light: #8fa07c;
+    --color-khaki-light: #7ca08e;
     --color-sand: #d0c5a5;
     --color-sand-light: #e7debf;
     --color-accent: #d4a84b;
@@ -132,7 +136,7 @@
     gap: 30px;
 }
 
-/* Логотип */
+/* ??????? */
 .preloader-logo {
     font-family: var(--font-heading);
     font-size: 3.5rem;
@@ -163,7 +167,7 @@
     }
 }
 
-/* Вращающееся кольцо */
+/* ??????????? ?????? */
 .preloader-ring {
     position: relative;
     width: 120px;
@@ -231,7 +235,7 @@
     }
 }
 
-/* Прогресс-бар */
+/* ????????-??? */
 .preloader-progress {
     width: 200px;
     height: 4px;
@@ -268,7 +272,7 @@
     }
 }
 
-/* Текст */
+/* ????? */
 .preloader-text {
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -297,7 +301,7 @@
     }
 }
 
-/* Частицы */
+/* ??????? */
 .preloader-particles {
     position: absolute;
     top: 0;
@@ -374,23 +378,64 @@
 }
 
 /* ========================================
-   Header (Updated for Military Panel)
+   Header (Minimal - Logo + Nav)
    ======================================== */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    padding: 10px 30px;
+    z-index: 1100;
+    padding: 15px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(13, 21, 33, 0.95); /* Solid dark background */
-    backdrop-filter: blur(12px); /* Glass effect */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Subtle separator */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    background: transparent; /* Initially transparent */
+    transition: background-color 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
     animation: fadeInDown 0.8s ease forwards;
+}
+
+.header.scrolled {
+    background: rgba(13, 21, 33, 0.95);
+    padding: 10px 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.header-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px; /* Rounded */
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--color-accent);
+    color: #0d1521;
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 168, 75, 0.4);
+}
+
+.nav-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 .logo {
@@ -405,8 +450,8 @@
 }
 
 .logo-img {
-    width: 60px;
-    height: 60px;
+    width: 80px; /* Increased from 60px */
+    height: 80px; /* Increased from 60px */
     object-fit: contain;
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
@@ -423,38 +468,221 @@
     color: var(--color-accent);
 }
 
-/* Top Navigation Panel Style */
-.top-nav {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(255,255,255,0.03);
-    padding: 4px;
-    border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.05);
+/* ========================================
+   Hamburger Menu & Fullscreen Overlay
+   ======================================== */
+
+/* Hide Hamburger on Desktop */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; /* Above everything */
+    position: relative;
 }
 
-.top-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #94a3b8;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-white);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
 }
 
-.top-nav-link:hover {
+/* X Animation */
+.hamburger-btn.active .bar-1 {
+    transform: translateY(10.5px) rotate(45deg);
+    background-color: var(--color-accent);
+}
+
+.hamburger-btn.active .bar-2 {
+    opacity: 0;
+}
+
+.hamburger-btn.active .bar-3 {
+    transform: translateY(-10.5px) rotate(-45deg);
+    background-color: var(--color-accent);
+}
+
+/* Fullscreen Menu */
+.fullscreen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 17, 33, 0.98); /* Almost opaque dark navy */
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.fullscreen-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Back to Center */
+    justify-content: center; /* Vertically centered again */
+    padding-top: 0;
+    gap: 15px;
+    min-width: 300px;
+    height: 100%;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem; /* Smaller font (was 1.5-2.0) */
     color: var(--color-white);
-    background: rgba(255, 255, 255, 0.1);
-    transform: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    padding: 10px 20px; /* Reduced padding */
+    border-radius: 8px;
+    width: 320px; /* Fixed lighter width */
+    background: rgba(26, 35, 50, 0.6); /* Dark semi-transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* Specific icon containers not needed if we simplified */
+.menu-icon-box {
+    display: none;
+}
+
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px); /* Simple lift */
+    border-color: var(--color-accent);
+}
+
+.menu-link:active {
+    transform: scale(0.98);
+}
+
+.menu-icon {
+    width: 24px; /* Smaller icons */
+    height: 24px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.menu-link:hover .menu-icon {
+    transform: scale(1.1);
+}
+
+.menu-link span {
+    text-shadow: none;
+}
+
+
+/* Remove the underline effect in favor of the specialized hover above */
+.menu-link::after {
+    display: none;
+}
+
+.menu-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 15px 0;
+}
+
+/* Highlighted Links (Donate) */
+.menu-donate {
+    background: rgba(252, 165, 165, 0.05);
+    border: 1px solid rgba(252, 165, 165, 0.1);
+}
+
+.menu-donate span {
+    color: #fca5a5;
+}
+
+.menu-donate:hover {
+    background: rgba(252, 165, 165, 0.15);
+    border-color: #fca5a5;
+    box-shadow: 0 0 20px rgba(252, 165, 165, 0.2);
+    transform: translateX(10px) scale(1.02);
+}
+
+/* Hide header right as we removed it */
+.header-right {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Show Hamburger, Hide rounded nav buttons */
+    .header-nav {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex;
+        z-index: 1201; /* Ensure on top */
+        margin-right: 35px; /* Move significantly left away from edge */
+    }
+
+    .header, .header.scrolled {
+        /* Standard padding but ensuring right spacing via button margin */
+        padding: 10px 20px; 
+        width: 100%; /* Ensure fits screen */
+        box-sizing: border-box; /* Prevent padding from adding to width */
+    }
+    
+    /* Shift the menu content a bit to the left on mobile */
+    .menu-nav {
+        transform: translateX(-5px);
+        align-items: flex-start;
+        width: 100%;
+        padding-left: 5%; 
+        gap: 8px; /* Compact gap */
+    }
+    
+    .bar {
+        height: 3px;
+        background-color: var(--color-white);
+        box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    }
+    
+    /* Extra Small Buttons */
+    .menu-link {
+        font-size: 0.9rem; /* Much smaller text */
+        padding: 6px 10px; /* Minimal padding */
+        gap: 8px; 
+        min-height: 40px; /* Ensure touch target isn't too tiny */
+    }
+
+    .menu-icon {
+        width: 24px; /* Tiny icons */
+        height: 24px;
+        filter: drop-shadow(0 0 3px rgba(0,0,0,0.8)); /* Stronger shadow for visibility */
+    }
+}
+
+/* Logo override for header layout */
+.header {
+    justify-content: space-between; /* Push logo and hamburger to edges */
+}
+
+/* Top Navigation Panel Style (REMOVED) */
+/* .top-nav { ... } */
 
 /* ========================================
    Bento Grid Layout (Modern Military UI - Dark)
@@ -462,18 +690,18 @@
 .main-bento-grid {
     padding: 40px 0 80px 0;
     
-    /* 1. Нижний слой: Тёмно-синий (Deep Navy) */
+    /* 1. ?????? ????: ?????-????? (Deep Navy) */
     background-color: #0b1121;
     
-    /* 2. Средний + Верхний слои */
+    /* 2. ??????? + ??????? ???? */
     background-image: 
-        /* Верхний слой: Виньетка */
+        /* ??????? ????: ???????? */
         radial-gradient(circle at 50% 40%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.7) 90%),
-        /* Средний слой: Сетка ("бетон"/техно стиль) */
+        /* ??????? ????: ????? ("?????"/????? ?????) */
         linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
     
-    background-size: 100% 100%, 40px 40px, 40px 40px; /* Размер клетки 40px */
+    background-size: 100% 100%, 40px 40px, 40px 40px; /* ?????? ?????? 40px */
 }
 
 .bento-wrapper {
@@ -488,16 +716,16 @@
 .bento-box {
     background: #1e293b; 
     border: 1px solid #334155;
-    border-radius: 2px; /* Почти острые углы */
+    border-radius: 2px; /* ????? ?????? ???? */
     padding: 24px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-    position: relative; /* Для уголков */
-    overflow: hidden; /* Чтобы блики не вылезали */
+    position: relative; /* ??? ??????? */
+    overflow: hidden; /* ????? ????? ?? ???????? */
 }
 
-/* Декоративные уголки (HUD Effect) */
+/* ???????????? ?????? (HUD Effect) */
 .bento-box::before {
     content: '';
     position: absolute;
@@ -513,7 +741,7 @@
         linear-gradient(to right, var(--color-accent) 2px, transparent 2px) 0 100%,
         linear-gradient(to top, var(--color-accent) 2px, transparent 2px) 0 100%;
     background-repeat: no-repeat;
-    background-size: 10px 10px; /* Размер уголков */
+    background-size: 10px 10px; /* ?????? ??????? */
     opacity: 0.5;
 }
 
@@ -607,7 +835,7 @@
   width: 100%; /* Adapts to grid, max width handled below or by grid */
   max-width: 320px;
   height: 300px;
-  background: #1e2124; /* Темно-синий/серый фон как на сайте */
+  background: #1e2124; /* ?????-?????/????? ??? ??? ?? ????? */
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 4px;
   display: flex;
@@ -631,7 +859,7 @@
 }
 
 .faction-icon {
-    width: 100px;  /* Размер логотипа */
+    width: 100px;  /* ?????? ???????? */
     height: 100px;
     object-fit: contain;
     margin-bottom: 15px;
@@ -641,7 +869,7 @@
 
 .faction-title {
   color: #ffffff;
-  font-family: 'Oswald', 'Russo One', sans-serif; /* Похожий строгий шрифт */
+  font-family: 'Oswald', 'Russo One', sans-serif; /* ??????? ??????? ????? */
   text-transform: uppercase;
   margin: 10px 0 5px;
   font-size: 1.5rem;
@@ -677,7 +905,7 @@
 }
 
 .ussr:hover .bottom-glow {
-  height: 60%; /* Свечение поднимается выше */
+  height: 60%; /* ???????? ??????????? ???? */
 }
 
 .ussr:hover .faction-icon {
@@ -701,7 +929,7 @@
 }
 
 .muj:hover .faction-icon {
-    transform: scale(1.1) rotate(-5deg); /* Легкий поворот для динамики */
+    transform: scale(1.1) rotate(-5deg); /* ?????? ??????? ??? ???????? */
     filter: drop-shadow(0 0 20px rgba(72, 187, 120, 0.6));
 }
 
@@ -855,34 +1083,70 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    /* Ensure perspective for 3D vibes if we add transforms later */
+    perspective: 1000px;
 }
 
-.hero-bg {
+.parallax-layer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('img/hero.jpg');
-    background-size: cover;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
-    z-index: -2;
+    transition: transform 0.1s linear; /* Smooth mouse movement */
+    will-change: transform;
 }
 
+.layer-base {
+    background-image: url('img/hero.jpg');
+    z-index: 1;
+}
+
+.layer-meteors {
+    z-index: 2; /* On top of base, below content */
+    pointer-events: none;
+    mix-blend-mode: screen; /* Shine through */
+}
+
+.layer-top {
+    background-image: url('img/hero-3d.png');
+    z-index: 3;
+    /* Ensure the top layer (transparent) sits nicely */
+    background-size: cover; 
+}
+
+/* Updated overlay */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    /* Darkening for readability + strong bottom fade */
     background: linear-gradient(
         180deg,
-        rgba(13, 21, 33, 0.7) 0%,
-        rgba(26, 35, 50, 0.5) 50%,
-        rgba(13, 21, 33, 0.9) 100%
+        rgba(13, 21, 33, 0.3) 0%,
+        rgba(13, 21, 33, 0.1) 60%,
+        rgba(13, 21, 33, 1) 100%
     );
-    z-index: -1;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Bottom Gold Strip */
+.hero-overlay::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    box-shadow: 0 -2px 10px rgba(212, 168, 75, 0.5);
+    opacity: 0.8;
 }
 
 .hero-content {
@@ -900,11 +1164,11 @@
     letter-spacing: 10px;
     margin-bottom: 10px;
     position: relative;
-    /* Статичный яркий заголовок (без clip/transparent) */
+    /* ????????? ????? ????????? (??? clip/transparent) */
     background: none;
-    /* Явное заполнение (на некоторых движках currentColor в text-fill ведёт себя странно) */
+    /* ????? ?????????? (?? ????????? ??????? currentColor ? text-fill ????? ???? ???????) */
     -webkit-text-fill-color: #ffffff !important;
-    /* Обводка + порядок рисования (в разных браузерах ведёт себя по‑разному) */
+    /* ??????? + ??????? ????????? (? ?????? ????????? ????? ???? ??-???????) */
     -webkit-text-stroke: 2px rgba(0, 0, 0, 0.85);
     paint-order: stroke fill;
     text-shadow:
@@ -914,37 +1178,37 @@
     filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.7));
 }
 
-/* Hero logo (SVG вместо текста на главной) */
+/* Hero logo (SVG ?????? ?????? ?? ???????) */
 .hero-logo {
     display: none;
 }
 .hero-military-block {
     display: inline-block;
     position: relative;
-    background-color: #1a202c; /* Темно-синий фон */
-    border: 3px solid #eab308; /* Золотая рамка */
+    background-color: #1a202c; /* ?????-????? ??? */
+    border: 3px solid #eab308; /* ??????? ????? */
     padding: 15px 60px;
     margin: 0 auto 20px auto;
     width: auto;
     min-width: 60%;
     box-shadow: none;
-    border-radius: 0; /* Острые углы */
+    border-radius: 0; /* ?????? ???? */
 }
 
 .hero-military-title {
-    font-family: 'Impact', 'Arial Black', sans-serif; /* Массивный шрифт */
+    font-family: 'Impact', 'Arial Black', sans-serif; /* ????????? ????? */
     font-weight: 900;
     font-size: clamp(3.5rem, 9vw, 6.5rem);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    /* Градиентный текст (серебро/белый) */
+    /* ??????????? ????? (???????/?????) */
     background: linear-gradient(180deg, #ffffff 20%, #a0a0a0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: #ffffff;
     
-    /* Жесткая тень (эффект объема) */
+    /* ??????? ???? (?????? ??????) */
     filter: drop-shadow(4px 5px 0px #000000);
     
     line-height: 1.1;
@@ -971,18 +1235,32 @@
 
 
 .hero-military-sub {
-    margin-top: 10px;
-    font-family: 'Impact', 'Arial Black', sans-serif;
-    font-size: clamp(1.2rem, 3vw, 2.2rem);
-    color: #8f9e7a; /* Оливковый цвет */
-    letter-spacing: 0.25em;
-    font-weight: 800;
+    margin-top: 15px;
+    font-family: var(--font-heading); /* Russo One */
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Increased size */
+    color: var(--color-accent); /* Gold/Yellow instead of dull green */
+    letter-spacing: 0.4em; /* Wider spacing for cinematic look */
+    font-weight: 400; /* Russo One is naturally bold */
     text-align: center;
     text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 0 0 15px rgba(212, 168, 75, 0.4), 2px 2px 4px rgba(0,0,0,0.9);
+    position: relative;
+    display: inline-block;
 }
 
-/* На главной убираем декоративный разделитель, чтобы совпасть с референсом */
+.hero-military-sub::before,
+.hero-military-sub::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    vertical-align: middle;
+    margin: 0 15px;
+    opacity: 0.7;
+}
+
+/* ?? ??????? ??????? ???????????? ???????????, ????? ???????? ? ?????????? */
 .home-page .hero-divider {
     display: none;
 }
@@ -995,14 +1273,14 @@
 
 .hero-title-box {
     display: inline-block;
-    /* Темно-синий и более прозрачный фон под STAR */
+    /* ?????-????? ? ????? ?????????? ??? ??? STAR */
     background: linear-gradient(180deg, rgba(10, 28, 66, 0.28), rgba(8, 18, 44, 0.16));
     padding: 20px 60px;
     margin-bottom: 25px;
     position: relative;
     border-radius: 14px;
     border: 1px solid rgba(120, 170, 255, 0.14);
-    /* Боковые акценты */
+    /* ??????? ??????? */
     border-left: 4px solid var(--color-accent);
     border-right: 4px solid var(--color-accent);
     box-shadow: 
@@ -1037,7 +1315,7 @@
     border-top: none;
 }
 
-/* На главной: без плашки/фона за "star" */
+/* ?? ???????: ??? ??????/???? ?? "star" */
 .home-page .hero-title-box {
     background: none;
     box-shadow: none;
@@ -1056,7 +1334,7 @@
     margin-bottom: 18px;
 }
 
-/* На всякий случай: если на главной где-то останется hero-title-box — полностью глушим эффекты */
+/* ?? ?????? ??????: ???? ?? ??????? ???-?? ????????? hero-title-box � ????????? ?????? ??????? */
 .home-page .hero-title-box,
 .home-page .hero:hover .hero-title-box {
     background: none !important;
@@ -1093,7 +1371,7 @@
 }
 
 .hero-divider::before {
-    content: '★';
+    content: '?';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1113,20 +1391,32 @@
 }
 
 .btn {
-    display: inline-block;
-    padding: 15px 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 42px;
     font-family: var(--font-body);
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border: 2px solid var(--color-khaki);
+    border: none;
+    border-radius: 50px; /* Rounded pill shape */
     background: rgba(107, 124, 94, 0.3);
     color: var(--color-white);
+    text-decoration: none; /* Removed underline */
     cursor: pointer;
-    transition: var(--transition-normal);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    z-index: 1;
+}
+
+.btn-icon {
+    font-size: 1.3em;
+    line-height: 0;
+    margin-bottom: 2px;
 }
 
 .btn::before {
@@ -1159,20 +1449,26 @@
 /* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    animation: fadeIn 1s ease 2s forwards, pulse 2s ease-in-out infinite 2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 20;
     opacity: 0;
+    animation: fadeIn 1s ease 1s forwards; /* Faster fade in */
 }
 
 .scroll-indicator span {
     display: block;
-    width: 30px;
-    height: 50px;
-    border: 2px solid var(--color-sand);
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 20px;
     position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .scroll-indicator span::before {
@@ -1180,23 +1476,51 @@
     position: absolute;
     top: 8px;
     left: 50%;
-    width: 6px;
-    height: 10px;
-    background: var(--color-sand);
+    width: 4px;
+    height: 8px;
+    background: var(--color-accent);
     border-radius: 3px;
     transform: translateX(-50%);
     animation: scrollDown 2s ease-in-out infinite;
 }
 
+/* Text & Arrows Animation */
+.scroll-indicator::after {
+    content: 'vvv'; /* Arrows look */
+    font-family: monospace; /* Simple arrow look or use icon font if available */
+    font-size: 1rem;
+    line-height: 0.5;
+    letter-spacing: -2px; /* Tight vertical stacking if allowed, but here it's horizontal text. */
+    /* Let's try CSS Arrows instead of text 'vvv' */
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+    transform: rotate(45deg);
+    margin-top: -5px;
+    animation: arrowBounce 2s infinite;
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+    50% { transform: rotate(45deg) translate(5px, 5px); opacity: 1; }
+}
+
 @keyframes scrollDown {
     0%, 100% {
-        opacity: 1;
+        opacity: 0;
         transform: translateX(-50%) translateY(0);
     }
-    50% {
-        opacity: 0.3;
-        transform: translateX(-50%) translateY(15px);
+    30% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(10px);
     }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}
 }
 
 /* ========================================
@@ -1211,6 +1535,7 @@
 .section-container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px; /* Added padding to prevent content from touching edges on mobile */
 }
 
 .section-header {
@@ -1473,208 +1798,157 @@
 }
 
 /* ========================================
-   Rules Content Styling
+   Rules Content Styling (One Wiki Style Adaptation)
    ======================================== */
 .rule-block {
-    background: rgba(26, 35, 50, 0.6);
-    border: 1px solid rgba(107, 124, 94, 0.3);
-    border-radius: 12px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    transition: var(--transition-normal);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 40px;
+    padding: 0;
+    transition: none;
 }
 
 .rule-block:hover {
-    border-color: var(--color-khaki);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    border: none;
+    box-shadow: none;
 }
 
-.rule-block-danger {
-    border-color: rgba(220, 53, 69, 0.4);
-    background: linear-gradient(135deg, rgba(26, 35, 50, 0.6) 0%, rgba(220, 53, 69, 0.1) 100%);
-}
-
-.rule-block-danger:hover {
-    border-color: rgba(220, 53, 69, 0.7);
-}
-
-.rule-block-warning {
-    border-color: rgba(212, 168, 75, 0.4);
-    background: linear-gradient(135deg, rgba(26, 35, 50, 0.6) 0%, rgba(212, 168, 75, 0.1) 100%);
-}
-
-.rule-block-warning:hover {
-    border-color: var(--color-accent);
-}
-
+/* Header: Number + Title (Clean Header Style) */
 .rule-header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 15px;
-    padding: 18px 25px;
-    background: rgba(13, 21, 33, 0.5);
-    border-bottom: 1px solid rgba(107, 124, 94, 0.2);
+    padding: 0;
+    background: transparent;
+    border-bottom: none;
+    margin-bottom: 15px;
 }
 
 .rule-number {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--color-khaki) 0%, var(--color-khaki-light) 100%);
-    color: var(--color-navy);
+    display: inline-block;
+    width: auto;
+    height: auto;
+    background: transparent !important;
+    color: var(--color-text-muted) !important;
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    border-radius: 10px;
-    flex-shrink: 0;
-}
-
-.rule-block-danger .rule-number {
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-    color: var(--color-white);
-}
-
-.rule-block-warning .rule-number {
-    background: linear-gradient(135deg, var(--color-accent) 0%, #c49a3c 100%);
-    color: var(--color-navy);
-}
-
-/* Medical block styling */
-.rule-block-medical {
-    border-color: rgba(220, 20, 60, 0.4);
-    background: linear-gradient(135deg, rgba(26, 35, 50, 0.6) 0%, rgba(220, 20, 60, 0.08) 100%);
-}
-
-.rule-block-medical:hover {
-    border-color: rgba(220, 20, 60, 0.7);
-}
-
-.rule-block-medical .rule-number {
-    background: linear-gradient(135deg, #dc143c 0%, #b01030 100%);
-    color: var(--color-white);
+    border-radius: 0;
+    padding: 0;
 }
 
 .rule-title {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--color-white);
     margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* The Content Box (The "Information" Card) */
+.rule-items {
+    background: rgba(18, 24, 38, 0.6); /* Very dark, transparent blue */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+}
+
+/* Label for the card */
+.rule-items::before {
+    content: 'Информация';
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 8px;
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.rule-items {
-    padding: 20px 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
+/* Individual Items (List Style within Card) */
 .rule-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px 20px;
-    background: rgba(36, 48, 71, 0.28);
-    border-radius: 10px;
-    border-left: 3px solid var(--color-khaki);
-    transition: var(--transition-normal);
+    display: block;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    border-left: none;
+    transition: none;
 }
 
 .rule-item:hover {
-    background: rgba(26, 35, 50, 0.38);
-    transform: translateX(5px);
+    background: transparent;
+    transform: none;
 }
 
+.rule-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+.rule-text strong {
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+/* Special "Danger/Warning" Cards INSIDE the Info Block */
 .rule-item-danger {
-    border-left-color: #dc3545;
+    background: rgba(239, 68, 68, 0.1); /* Red tint */
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.rule-item-danger .rule-text {
+    color: #fca5a5;
+}
+
+.rule-item-danger .rule-text strong {
+    color: #fca5a5;
 }
 
 .rule-item-danger:hover {
-    background: rgba(220, 53, 69, 0.1);
+    background: rgba(239, 68, 68, 0.12);
 }
 
-/* Faction-specific rule blocks */
-.rule-block-ussr {
-    border-color: rgba(204, 0, 0, 0.4);
-    background: linear-gradient(135deg, rgba(26, 35, 50, 0.6) 0%, rgba(204, 0, 0, 0.08) 100%);
+/* Warning (Gold) Variant */
+/* Removed empty rule block to fix lint warning */
+
+/* Remove old gradients/borders/shadows from specific block types */
+.rule-block-danger, .rule-block-warning, .rule-block-medical, .rule-block-ussr, .rule-block-muj, .rule-block-admin {
+    background: transparent;
+    border-color: transparent;
+}
+.rule-block-danger .rule-number, .rule-block-warning .rule-number, .rule-block-medical .rule-number {
+    background: transparent;
+    color: var(--color-text-muted);
+}
+.rule-block-danger:hover, .rule-block-warning:hover {
+    border-color: transparent;
 }
 
-.rule-block-ussr:hover {
-    border-color: rgba(204, 0, 0, 0.7);
-}
-
-.rule-block-ussr .rule-number {
-    background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
-    color: var(--color-white);
-    font-size: 1.4rem;
-    border-radius: 50%;
-}
-
-.rule-block-muj {
-    border-color: rgba(76, 175, 80, 0.4);
-    background: linear-gradient(135deg, rgba(26, 35, 50, 0.6) 0%, rgba(76, 175, 80, 0.08) 100%);
-}
-
-.rule-block-muj:hover {
-    border-color: rgba(76, 175, 80, 0.7);
-}
-
-.rule-block-muj .rule-number {
-    background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
-    color: var(--color-white);
-    font-size: 1.4rem;
-    border-radius: 50%;
-}
-
-.rule-intro {
-    padding: 15px 25px;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--color-text);
-    border-bottom: 1px solid rgba(107, 124, 94, 0.15);
-    background: rgba(255, 255, 255, 0.02);
-}
-
-.rule-intro strong {
-    color: var(--color-accent);
-}
-
-/* Rules intro block */
+/* Intro Blocks */
 .rules-intro-block {
-    background: linear-gradient(135deg, rgba(107, 124, 94, 0.15) 0%, rgba(26, 35, 50, 0.6) 100%);
-    padding: 20px 25px;
-    border-radius: 12px;
-    border-left: 4px solid var(--color-khaki);
-    margin-bottom: 25px;
+    background: rgba(18, 24, 38, 0.6);
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: none; /* Removed thick khaki border */
+    margin-bottom: 30px;
 }
-
 .rules-intro-block p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--color-text);
-    margin: 0;
+    color: #94a3b8;
+    font-size: 1rem;
 }
 
-.rules-intro-block strong {
-    color: var(--color-accent);
-}
-
-/* Admin block styling */
-.rule-block-admin {
-    border-color: rgba(138, 43, 226, 0.4);
-    background: linear-gradient(135deg, rgba(26, 35, 50, 0.6) 0%, rgba(138, 43, 226, 0.08) 100%);
-}
-
-.rule-block-admin:hover {
-    border-color: rgba(138, 43, 226, 0.7);
-}
-
-.rule-block-admin .rule-number {
-    background: linear-gradient(135deg, #8a2be2 0%, #6b1fb8 100%);
-    color: var(--color-white);
-}
 
 .rule-block-admin .rule-intro {
     display: flex;
@@ -1730,7 +2004,7 @@
 }
 
 .rule-sublist li::before {
-    content: '▸';
+    content: '?';
     position: absolute;
     left: 0;
     color: var(--color-khaki);
@@ -1924,8 +2198,8 @@
     }
     
     .logo-img {
-        width: 45px;
-        height: 45px;
+        width: 60px; /* Increased from 45px */
+        height: 60px; /* Increased from 45px */
     }
     
     .logo-text {
@@ -2451,34 +2725,15 @@
 /* ========================================
    Parallax Effect
    ======================================== */
-.parallax-container {
-    perspective: 1000px;
-    transform-style: preserve-3d;
-}
+/* Remove conflict */
 
-.parallax-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
+/* (Conflicting parallax-layer removed) */
 
-.parallax-back {
-    transform: translateZ(-200px) scale(1.2);
-    z-index: -3;
-}
+/* (Conflicting parallax-back removed) */
 
-.parallax-mid {
-    transform: translateZ(-100px) scale(1.1);
-    z-index: -2;
-    pointer-events: none;
-}
+/* (Conflicting parallax-mid removed) */
 
-.parallax-front {
-    position: relative;
-    z-index: 1;
-}
+/* (Conflicting parallax-front removed) */
 
 /* Floating Particles */
 .parallax-particles {
@@ -2570,7 +2825,7 @@
     transform: none;
 }
 
-/* Глубина при наведении */
+/* ??????? ??? ????????? */
 .hero::before {
     content: '';
     position: absolute;
@@ -2607,7 +2862,7 @@
     animation: dustFloat linear infinite;
 }
 
-/* Создаем пылинки с помощью градиентов */
+/* ??????? ??????? ? ??????? ?????????? */
 .dust::before,
 .dust::after {
     content: '';
@@ -2664,7 +2919,7 @@
     }
 }
 
-/* Индивидуальные настройки для каждой частицы пыли */
+/* ?????????????? ????????? ??? ?????? ??????? ???? */
 .dust-1 { animation-duration: 25s; animation-delay: 0s; left: 0%; }
 .dust-2 { animation-duration: 30s; animation-delay: 2s; left: 10%; }
 .dust-3 { animation-duration: 20s; animation-delay: 4s; left: 20%; }
@@ -2681,7 +2936,7 @@
 .dust-14 { animation-duration: 27s; animation-delay: 4.2s; left: 75%; }
 .dust-15 { animation-duration: 23s; animation-delay: 1.8s; left: 95%; }
 
-/* Легкий туман/дымка внизу */
+/* ?????? ?????/????? ????? */
 .hero::after {
     content: '';
     position: absolute;
@@ -2799,7 +3054,7 @@
     }
 }
 
-/* Мобильная версия кнопки */
+/* ????????? ?????? ?????? */
 @media (max-width: 480px) {
     .back-to-top {
         bottom: 20px;
@@ -2872,7 +3127,7 @@
     }
 }
 
-/* Мобильная оптимизация: отключаем тяжёлые декоративные слои */
+/* ????????? ???????????: ????????? ??????? ???????????? ???? */
 @media (max-width: 768px) {
     .parallax-particles,
     .dust-container {
@@ -2894,12 +3149,12 @@
    Responsive - Mobile (IMBA VERSION)
    ======================================== */
 @media (max-width: 480px) {
-    /* Общие настройки */
+    /* ????? ????????? */
     body {
         font-size: 15px;
     }
     
-    /* Header мобильный */
+    /* Header ????????? */
     .header {
         padding: 8px 12px;
         backdrop-filter: blur(15px);
@@ -2922,7 +3177,7 @@
     
     /* (i18n removed) */
     
-    /* Menu Button мобильный - больше и заметнее */
+    /* Menu Button ????????? - ?????? ? ???????? */
     .menu-btn {
         width: 44px;
         height: 44px;
@@ -2936,7 +3191,7 @@
         height: 2.5px;
     }
     
-    /* Menu Overlay - полноэкранный */
+    /* Menu Overlay - ????????????? */
     .menu-overlay {
         max-width: 100%;
         width: 100%;
@@ -3000,9 +3255,9 @@
         font-size: 1.5rem;
     }
     
-    /* Hero секция - мобильная магия */
+    /* Hero ?????? - ????????? ????? */
     .hero {
-        min-height: 100svh; /* safe viewport height для iOS */
+        min-height: 100svh; /* safe viewport height ??? iOS */
     }
     
     .hero-content {
@@ -3045,7 +3300,7 @@
         height: 10px;
     }
     
-    /* CTA кнопка - большая и тапабельная */
+    /* CTA ?????? - ??????? ? ??????????? */
     .btn {
         padding: 16px 35px;
         font-size: 1rem;
@@ -3061,7 +3316,7 @@
         transform: scale(0.97);
     }
     
-    /* About секция */
+    /* About ?????? */
     .about-section {
         padding: 50px 15px;
     }
@@ -3091,7 +3346,7 @@
         padding: 0 5px;
     }
     
-    /* Rules секция */
+    /* Rules ?????? */
     .rules-section {
         padding: 50px 12px;
     }
@@ -3126,12 +3381,12 @@
         line-height: 1.6;
     }
     
-    /* Убираем параллакс на телефоне для производительности */
+    /* ??????? ????????? ?? ???????? ??? ?????????????????? */
     .hero-bg {
         transform: none !important;
     }
     
-    /* Анимация появления для мобильных */
+    /* ???????? ????????? ??? ????????? */
     .hero-content {
         animation: mobileSlideUp 0.8s ease-out;
     }
@@ -3147,12 +3402,12 @@
         }
     }
     
-    /* Уменьшаем пыль для производительности */
+    /* ????????? ???? ??? ?????????????????? */
     .dust {
         opacity: 0.3;
     }
     
-    /* Safe area для iPhone с notch */
+    /* Safe area ??? iPhone ? notch */
     .header {
         padding-top: max(8px, env(safe-area-inset-top));
         padding-left: max(12px, env(safe-area-inset-left));
@@ -3201,7 +3456,7 @@
    Touch-specific improvements
    ======================================== */
 @media (hover: none) and (pointer: coarse) {
-    /* Убираем hover эффекты на тач-устройствах */
+    /* ??????? hover ??????? ?? ???-??????????? */
     .btn:hover {
         transform: none;
         box-shadow: 0 5px 20px rgba(212, 168, 75, 0.3);
@@ -3217,7 +3472,7 @@
         background: var(--color-white);
     }
     
-    /* Активные состояния для тач */
+    /* ???????? ????????? ??? ??? */
     .btn:active {
         transform: scale(0.97);
         background: var(--color-khaki);
@@ -3281,28 +3536,51 @@
     }
 }
 
+/* Enhanced Button Styles */
 .btn.btn-primary {
-    background: var(--color-khaki);
-    border-color: var(--color-khaki-light);
-    color: var(--color-navy);
+    /* Gradient Trick for Right-to-Left Fill Animation */
+    background: linear-gradient(to right, var(--color-accent) 50%, #ffffff 50%);
+    background-size: 200% 100%;
+    background-position: 0% 0%; /* Shows Yellow side (Left) by default */
+    border: 1px solid var(--color-accent);
+    color: #0d1521; /* Dark Navy Text */
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(212, 168, 75, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+/* Clear previous pseudo-elements */
+.btn.btn-primary::after {
+    display: none;
 }
 
 .btn.btn-primary:hover {
-    background: var(--color-khaki-light);
-    border-color: var(--color-sand);
-    color: var(--color-navy);
+    background-position: 100% 0%; /* Slides to White side (Right enters) */
+    color: var(--color-accent); /* Text becomes Yellow */
+    border-color: #ffffff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
 }
 
 .btn.btn-outline {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(13, 21, 33, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     color: var(--color-white);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    font-weight: 700;
 }
 
 .btn.btn-outline:hover {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(255, 255, 255, 0.95);
-    color: var(--color-navy);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .btn.btn-sm {
@@ -3576,7 +3854,7 @@
     box-shadow: 0 18px 55px rgba(60, 255, 120, 0.12), 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 
-/* Блок ссылок на правила (внизу главной) */
+/* ???? ?????? ?? ??????? (????? ???????) */
 .rules-section.rules-section-links {
     background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-dark-blue) 100%);
 }
@@ -3955,7 +4233,7 @@
 }
 
 .faction-list li::before {
-    content: '•';
+    content: '�';
     position: absolute;
     left: 0;
     color: var(--color-accent);
@@ -3991,7 +4269,7 @@
     max-width: 900px;
 }
 
-/* Унификация отступа под fixed header на внутренних страницах */
+/* ?????????? ??????? ??? fixed header ?? ?????????? ????????? */
 .faction-page main,
 .developers-page main {
     padding-top: clamp(78px, 10vh, 110px);
@@ -4024,3 +4302,1640 @@
         grid-template-columns: 1fr;
     }
 }
+/* ========================================
+   MOBILE & LAYOUT INTEGRITY FIXES (FINAL)
+   ======================================== */
+
+/* 1. Base Reset to prevent White Stripes */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #0b1121; /* Force Dark Navy background matching scrollbar/theme */
+    background: #0b1121;
+}
+
+@media (max-width: 768px) {
+    /* 2. Header Visibility Fix (Made Transparent) */
+    .header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 5px 15px;
+        background: transparent; /* No background */
+        height: auto;
+        min-height: 50px;
+        z-index: 10000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: none; /* No shadow */
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    /* Force Nav display as Icons */
+    .top-nav {
+        display: flex !important;
+        gap: 12px;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    .top-nav-link {
+        padding: 5px;
+        font-size: 0; /* Hide Text */
+    }
+
+    .top-nav-link svg {
+        width: 26px;
+        height: 26px;
+        display: block;
+        color: var(--color-accent);
+    }
+
+    /* Hide 'About' or text-only links that have no icons to prevent empty space */
+    .top-nav-link[href="#about"] {
+        display: none; 
+    }
+
+    /* 3. Container & Padding Fixes (No White Stripes) */
+    .hero-content, 
+    .container, 
+    .rules-links-grid, 
+    .factions-grid,
+    .bento-wrapper,
+    .quick-start-grid,
+    .main-bento-grid,
+    .home-split,
+    .faction-categories-grid,
+    .faction-hero-content {
+        width: 100% !important; /* Use full width */
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding-left: 15px !important; /* Internal padding instead of margin */
+        padding-right: 15px !important;
+        box-sizing: border-box;
+    }
+
+    /* Remove lateral margins from body children to stop white gaps */
+    body > * {
+        max-width: 100vw;
+    }
+
+    /* 4. Grid Stacking (One Column) */
+    .bento-wrapper,
+    .rules-links-grid,
+    .faction-categories-grid,
+    .qs-grid,
+    .factions-grid,
+    .factions-grid-bento {
+        grid-template-columns: 1fr !important;
+        display: grid !important;
+        gap: 20px !important;
+    }
+
+    /* 5. Card Sizing */
+    .rules-link-card,
+    .bento-tile,
+    .faction-card,
+    .category-tile,
+    .qs-card,
+    .rules-box,
+    .quick-start-box {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* Hero Title Scaling */
+    .hero-title {
+        font-size: 2.2rem !important; /* Fit within screen */
+        line-height: 1.1;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ========================================
+   MOBILE ORDERING FIX (FLEXBOX)
+   ======================================== */
+@media (max-width: 768px) {
+    .bento-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* 1. Quick Start */
+    .quick-start-box {
+        order: 1 !important;
+    }
+
+    /* 2. Rules */
+    .rules-box {
+        order: 2 !important;
+    }
+
+    /* 3. Factions */
+    .factions-box {
+        order: 3 !important;
+    }
+    
+    /* Ensure full width for these flex items */
+    .bento-box {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+
+/* ========================================
+   FACTION PAGES DOCUMENT DESIGN
+   ======================================== */
+
+.doc-meta {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-family: 'Roboto Mono', monospace;
+    opacity: 0.8;
+}
+
+.doc-meta-item {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.status-active { color: #4ade80; font-weight: bold; }
+.status-guerilla { color: #fbbf24; font-weight: bold; }
+.access-level { color: #f87171; font-weight: bold; }
+
+.faction-hero-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.doc-paper {
+    background: #1e293b;
+    border-left: 4px solid #334155;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-radius: 2px;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.doc-paper::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.05) 50%);
+    pointer-events: none;
+}
+
+/* USSR Specific Paper */
+.doc-paper article {
+    margin-bottom: 40px;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+    padding-bottom: 30px;
+}
+.doc-paper article:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.section-num {
+    color: var(--color-accent);
+    margin-right: 10px;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+}
+
+.highlight-text {
+    color: #e2e8f0;
+    font-weight: 800;
+}
+
+/* Styled Lists inside documents */
+.styled-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #94a3b8;
+}
+
+.styled-list li::before {
+    content: '? ?';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+/* Role Cards */
+.role-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.role-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.role-card h3 {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--color-accent);
+    display: inline-block;
+}
+
+.role-card p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+
+/* Footer Note */
+.footer-note {
+    text-align: center;
+    color: #64748b;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    border-top: 1px solid #334155;
+    padding-top: 20px;
+    text-transform: uppercase;
+}
+
+/* Mujahideen Specific overrides */
+.doc-paper-muj {
+    border-left-color: #48bb78; /* Green border */
+    background: #181d18; /* Slight green tint */
+}
+.rule-badge-muj {
+    border-color: #48bb78;
+    color: #86efac;
+}
+
+@media (max-width: 768px) {
+    .doc-paper {
+        padding: 20px;
+    }
+}
+/* ========================================
+   USSR Faction Specific Enhancements
+   ======================================== */
+
+/* Hierarchy Ladder */
+.hierarchy-ladder {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 25px;
+    position: relative;
+}
+
+.hierarchy-ladder::before {
+    content: '';
+    position: absolute;
+    left: 45px;
+    top: 40px;
+    bottom: 40px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+}
+
+.rank-step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+    background: rgba(36, 48, 71, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Slight outline */
+    padding: 15px 20px;
+    border-radius: 12px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.rank-step:hover {
+    transform: translateX(5px);
+    border-color: rgba(204, 0, 0, 0.3); /* Reddish tint on hover */
+    background: rgba(40, 50, 75, 0.6);
+}
+
+.rank-icon {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: rgba(204, 0, 0, 0.15); /* Red background for rank icon */
+    color: #ffaaaa;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid rgba(204, 0, 0, 0.3);
+}
+
+.rank-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.rank-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-white);
+    letter-spacing: 0.5px;
+}
+
+.rank-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+
+/* Enhanced Role Cards */
+.role-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.role-card-modern {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.role-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-accent);
+    opacity: 0.5;
+}
+
+.role-card-modern:hover {
+    transform: translateY(-5px);
+    background: rgba(30, 41, 59, 0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-color: rgba(212, 168, 75, 0.2);
+}
+
+.role-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.role-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(212, 168, 75, 0.1);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: var(--color-accent);
+    font-size: 1.4rem;
+}
+
+.role-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.role-desc {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Quote Block */
+.faction-quote {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: -10px 0 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Section Title Highlight */
+.h-red { color: #ff6b6b; }
+
+/* 4. Donate Box (Bento Grid) */
+.donate-box {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8)), 
+                url('img/hero-3d.png'); /* Subtle texture using existing asset */
+    background-size: cover;
+    background-position: center 20%;
+    border: 1px solid rgba(252, 165, 165, 0.2);
+    padding: 30px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Red accent corners override just for this box */
+.donate-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: 
+        linear-gradient(to right, #fca5a5 2px, transparent 2px) 0 0,
+        linear-gradient(to bottom, #fca5a5 2px, transparent 2px) 0 0,
+        linear-gradient(to left, #fca5a5 2px, transparent 2px) 100% 0,
+        linear-gradient(to bottom, #fca5a5 2px, transparent 2px) 100% 0,
+        linear-gradient(to left, #fca5a5 2px, transparent 2px) 100% 100%,
+        linear-gradient(to top, #fca5a5 2px, transparent 2px) 100% 100%,
+        linear-gradient(to right, #fca5a5 2px, transparent 2px) 0 100%,
+        linear-gradient(to top, #fca5a5 2px, transparent 2px) 0 100%;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    opacity: 0.8;
+}
+
+.donate-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.donate-text {
+    flex: 1;
+}
+
+.donate-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    background: linear-gradient(90deg, #fca5a5, #f87171);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.donate-desc {
+    color: #cbd5e1;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+.donate-desc span {
+    color: #fca5a5;
+    font-weight: 700;
+}
+
+.donate-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-donate-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    font-size: 1rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+/* DonationAlerts Style */
+.btn-donate-alert {
+    border: 1px solid rgba(252, 165, 165, 0.4);
+    box-shadow: 0 4px 15px rgba(252, 165, 165, 0.1);
+    color: #fca5a5;
+}
+
+.btn-donate-alert:hover {
+    background: #fca5a5;
+    color: #1a202c;
+    box-shadow: 0 0 25px rgba(252, 165, 165, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Boosty Styles Removed */
+
+.btn-donate-alert img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* Mobile Responsive for Donate Box */
+@media (max-width: 900px) {
+    .donate-box {
+        padding: 20px 15px; /* Reduced padding */
+    }
+
+    .donate-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px; /* Reduced gap */
+    }
+    
+    .donate-title {
+        font-size: 1.5rem; /* Smaller title */
+        margin-bottom: 8px;
+    }
+    
+    .donate-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px; /* Reduced gap between buttons */
+    }
+    
+    .btn-donate-alert {
+        justify-content: center;
+        width: auto; /* Changed from 100% to auto */
+        min-width: 200px;
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 8px 16px; /* Even smaller padding */
+        font-size: 0.85rem; /* Smaller font */
+        height: 40px; /* Smaller height */
+    }
+
+    .btn-donate-alert img {
+        width: 18px; /* Smaller icons */
+        height: 18px;
+    }
+
+    .donate-desc {
+        font-size: 0.85rem; /* Smaller description text */
+        line-height: 1.4;
+    }
+}
+
+/* Fix for Faction Cards Overflow on Mobile */
+@media (max-width: 600px) {
+    .factions-grid-bento {
+        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+        gap: 15px;
+    }
+
+    .faction-card {
+        min-width: 0; /* Allow shrinking */
+        width: 100%; /* Ensure full available width */
+        margin: 0;
+        box-sizing: border-box; /* Include padding in width */
+    }
+    
+    .faction-card .faction-content {
+        padding: 15px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .faction-card .faction-icon {
+        width: 60px; /* Smaller icons on mobile */
+        height: 60px;
+    }
+
+    .faction-card .faction-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Background Banner Modifier for Section Header (USSR) */
+.section-header-bg-ussr {
+    position: relative;
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(252, 165, 165, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    /* Background Image setup */
+    background-image: 
+        linear-gradient(to bottom, rgba(11, 17, 33, 0.85), rgba(11, 17, 33, 0.5)),
+        url('img/usssr-b.jpg');
+    background-size: cover;
+    background-position: center 25%;
+    background-repeat: no-repeat;
+}
+
+/* Ensure text is clearly visible above the background */
+.section-header-bg-ussr h1, 
+.section-header-bg-ussr p {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+@media (max-width: 768px) {
+    .section-header-bg-ussr {
+        padding: 40px 15px;
+        background-position: center;
+    }
+
+    /* === Mobile Hero Fixes (User Request) === */
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .hero-military-block {
+        width: 90%;          /* Occupy ~90% */
+        max-width: 400px;    /* Max width cap */
+        min-width: 0;        /* Override desktop min-width */
+        padding: 15px 10px;  /* Reduced padding */
+        margin: 0 auto 15px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-military-title {
+        font-size: clamp(2rem, 10vw, 4.5rem); /* Adaptive font size */
+        white-space: nowrap; /* Prevent breaking if possible, or allow clamp to shrink it */
+    }
+
+    .hero-military-sub {
+        letter-spacing: 3px;
+        font-size: 1.3rem; /* Significantly bigger than 0.9rem */
+        text-shadow: 0 0 10px rgba(212, 168, 75, 0.3);
+        width: 100%;
+    }
+
+    /* Hide the decorative lines on mobile because of space */
+    .hero-military-sub::before,
+    .hero-military-sub::after {
+        display: none;
+    }
+}
+
+
+/* ========================================
+   Falling Stars Background (Removed)
+   ======================================== */
+
+
+@media (max-width: 768px) {
+   /* Fix for Factions Box touching screen edges */
+   .bento-wrapper .factions-box {
+       margin-left: 15px !important;
+       margin-right: 15px !important;
+       width: auto !important;
+   }
+   /* Ensure generic container padding is respected */
+   .section-container {
+       padding-left: 15px !important;
+       padding-right: 15px !important;
+   }
+}
+
+
+@media (max-width: 768px) {
+   /* Fix for Factions Box touching screen edges */
+   .bento-wrapper .factions-box {
+       margin-left: 15px !important;
+       margin-right: 15px !important;
+       width: auto !important;
+   }
+   /* Ensure generic container padding is respected */
+   .section-container {
+       padding-left: 15px !important;
+       padding-right: 15px !important;
+   }
+}
+
+
+@media (max-width: 768px) {
+   /* Unified mobile width fix */
+   .bento-wrapper .bento-box {
+       margin-left: 0 !important;
+       margin-right: 0 !important;
+       width: 100% !important;
+   }
+   
+   .section-container {
+       padding-left: 15px !important;
+       padding-right: 15px !important;
+       width: 100%;
+       box-sizing: border-box;
+   }
+   
+   .bento-wrapper {
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+   }
+}
+
+@media (max-width: 768px) {
+    /* Add extra spacing around faction cards on mobile */
+    .factions-box {
+        padding: 20px 15px !important; /* Ensure side padding exists */
+    }
+    
+    .factions-grid-bento {
+        gap: 25px !important; /* Increase gap between cards */
+        width: 100%;
+        padding: 0 5px; /* Tiny extra side buffer */
+    }
+    
+    /* Ensure cards don't touch edges if box padding is small */
+    .faction-card {
+        margin-bottom: 0 !important; /* Rely on gap */
+        width: 100% !important;
+        max-width: 100% !important; /* Allow filling the space */
+    }
+}
+
+
+@media (max-width: 768px) {
+    /* Add extra spacing around faction cards on mobile */
+    .factions-box {
+        padding: 20px 25px !important; /* Increased side padding */
+    }
+    
+    .factions-grid-bento {
+        gap: 25px !important; /* Increase gap between cards */
+        width: 100%;
+        padding: 5px 0; /* Vertical buffer */
+    }
+    
+    /* Ensure cards don't touch edges if box padding is small */
+    .faction-card {
+        margin-bottom: 0 !important; /* Rely on gap */
+        width: 100% !important;
+        max-width: 100% !important; /* Allow filling the space */
+    }
+}
+
+
+/* ========================================
+   About Project Section (Index)
+   ======================================== */
+.about-project {
+    min-height: 60vh; /* Reduced height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px; /* Reduced padding from 80px */
+    background: #0b1121; /* Match background */
+    overflow: hidden;
+}
+
+.about-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Photo Left */
+.about-photo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    opacity: 0; 
+    transform: translateX(-50px); /* Initial state for slide in */
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.about-photo.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(212, 168, 75, 0.2));
+    max-height: 500px; /* Limit height */
+}
+
+/* Text Right */
+.about-content {
+    flex: 1;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s; /* Delay for text */
+}
+
+.about-content.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--color-white);
+    margin-bottom: 25px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.about-title span {
+    color: var(--color-accent);
+}
+
+.about-desc {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .about-photo {
+        transform: translateY(30px); /* Slide up on mobile */
+    }
+    
+    .about-content {
+        transform: translateY(30px);
+    }
+    
+    .about-img {
+        max-height: 300px;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* ========================================
+   About Features Grid
+   ======================================== */
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+    margin-top: 10px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+    border-color: rgba(212, 168, 75, 0.3);
+}
+
+.f-icon {
+    font-family: var(--font-primary);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    opacity: 0.8;
+    line-height: 1;
+}
+
+.f-text h4 {
+    font-family: var(--font-secondary);
+    color: var(--color-white);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.f-text p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Force text alignment for about section */
+.about-content {
+    text-align: left !important;
+}
+
+@media (max-width: 600px) {
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ========================================
+   Docs / Rules Layout (Sidebar)
+   ======================================== */
+/* OLD LAYOUT COMMENTED OUT TO ENFORCE STRICT POLICY
+.docs-layout {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 60px;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.docs-sidebar {
+    width: 280px;
+    background: #0b1121;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+*/
+
+.docs-content {
+    flex: 1;
+    padding: 40px;
+    min-width: 0; /* Prevent overflow */
+}
+
+/* Sidebar Navigation */
+.sidebar-group {
+    margin-bottom: 25px;
+}
+
+.sidebar-title {
+    font-family: var(--font-secondary);
+    color: #94a3b8;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    padding-left: 10px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-white);
+}
+
+.sidebar-link.active {
+    background: rgba(16, 185, 129, 0.1); /* Green tint */
+    color: #10b981; /* Green text */
+    font-weight: 700;
+}
+
+/* Sub-menu (anchors) */
+.sidebar-submenu {
+    margin-left: 20px; /* Indent */
+    padding-left: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 5px;
+    display: none; /* Hidden by default */
+}
+
+.sidebar-link.active + .sidebar-submenu,
+.sidebar-submenu.expanded {
+    display: block;
+}
+
+.sub-link {
+    display: block;
+    padding: 6px 10px;
+    color: #64748b;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.sub-link:hover {
+    color: #e2e8f0;
+}
+
+.sub-link.current {
+    color: #10b981;
+}
+
+/* Sidebar Icons */
+.sb-icon {
+    width: 18px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+/* Scrollbar for sidebar */
+.docs-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+.docs-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .docs-layout {
+        flex-direction: column;
+    }
+    
+    .docs-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .docs-content {
+        padding: 20px;
+    }
+}
+
+
+/* ========================================
+   Sidebar Improvements (Clean One Wiki Style)
+   ======================================== */
+
+.sidebar-group {
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Collapsible behavior with Animation */
+.group-content {
+    max-height: 1000px; /* Arbitrary large value */
+    overflow: hidden;
+    /* Pure slide animation without fading */
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-group.collapsed .group-content {
+    max-height: 0;
+}
+
+.sidebar-title {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    user-select: none;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #94a3b8;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.sidebar-title:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-white);
+}
+
+.title-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+    opacity: 0.6;
+    display: inline-block;
+}
+
+.sidebar-group.collapsed .title-arrow {
+    transform: rotate(-90deg);
+}
+
+/* Visual Enhancements for Links */
+.sidebar-link {
+    margin-bottom: 4px;
+    border-left: 3px solid transparent; /* One Wiki thicker bar */
+    border-radius: 0 4px 4px 0;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #cbd5e1;
+}
+
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-white);
+}
+
+.sidebar-link.active {
+    background: rgba(212, 168, 75, 0.08); /* Low opacity gold */
+    border-left-color: var(--color-accent); /* Solid gold bar */
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+.sb-icon {
+    font-size: 1.1rem;
+    margin-right: 12px;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.sidebar-link.active .sb-icon {
+    opacity: 1;
+    color: var(--color-accent);
+}
+
+
+/* ========================================
+   Docs Layout (STRICT: One Scrollbar Policy)
+   ======================================== */
+
+body.docs-page {
+    /* Main scrollbar is here. */
+    overflow-y: auto !important;
+    height: auto !important;
+    /* No overflow-x: hidden - it can break sticky positioning */
+    background: #0b1121;
+}
+
+.docs-layout {
+    display: flex;
+    justify-content: space-between; /* Spread items: Sidebar Left, Content Center, TOC Right */
+    align-items: flex-start;
+    gap: 40px; /* Reduced gap slightly to ensure fit */
+    
+    width: 98%;
+    max-width: 1750px;
+    margin: 0 auto;
+    padding-top: 130px;
+    padding-bottom: 100px;
+    position: relative;
+    /* Container grows with content, creating body scroll */
+    min-height: auto;
+}
+
+/* LEFT SIDEBAR (Sticky positioning) */
+.docs-sidebar {
+    width: 290px;
+    flex-shrink: 0;
+    
+    /* Sticky positioning for scroll-follow behavior */
+    position: sticky;
+    top: 20px;
+    align-self: flex-start; /* Critical for sticky in flex layout */
+    
+    /* Allow internal scroll if content exceeds viewport */
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    
+    background: rgba(11, 15, 25, 0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    
+    padding: 24px;
+    z-index: 50;
+}
+
+/* Cleanup old scrollbars just in case */
+.docs-sidebar::-webkit-scrollbar { display: none; }
+
+
+/* MAIN CONTENT (Grows indefinitely) */
+.docs-content {
+    flex: 1;
+    max-width: 1100px;
+    min-width: 0;
+    
+    /* NO internal scroll */
+    height: auto !important;
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+/* RIGHT SIDEBAR (Sticky positioning) */
+.docs-toc {
+    width: 250px;
+    flex-shrink: 0;
+    
+    /* Sticky positioning for scroll-follow behavior */
+    position: sticky;
+    top: 20px;
+    align-self: flex-start; /* Critical for sticky in flex layout */
+    
+    /* Allow internal scroll if content exceeds viewport */
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    
+    padding: 10px 0;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.docs-toc::-webkit-scrollbar { display: none; }
+
+
+
+
+.content-header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.content-header h1 {
+    font-size: 3.2rem;
+    color: var(--color-white);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.section-subtitle {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+
+
+
+/* TOC Styles (Right Side Navigation) */
+.toc-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-align: right; /* Align right to match side */
+}
+
+/* Beautiful TOC Buttons */
+.toc-link {
+    display: block;
+    padding: 8px 16px;
+    margin-bottom: 8px;
+    
+    /* Button Look */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    
+    /* Text */
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: right;
+    
+    transition: all 0.2s ease;
+}
+
+.toc-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
+    transform: translateX(-5px); /* Move slightly left on hover */
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.toc-link.active {
+    background: var(--color-accent); /* Gold button for active */
+    border-color: var(--color-accent);
+    color: #000; /* Dark text on gold */
+    font-weight: 800;
+    transform: translateX(-5px);
+    box-shadow: 0 0 15px rgba(212, 168, 75, 0.4);
+}
+
+/* Adjustments to ensure content isn't totally covered by sidebars on medium screens */
+
+
+@media (max-width: 1100px) {
+    /* If screen is too small, sidebar might cover content. 
+       Mobile layout kicks in at 900px, but between 900-1100 overlap occurs.
+       We allow overlap as per "Layout doesn't shift" rule, or we let mobile styles take over sooner.
+    */
+    .rule-section-content {
+        padding: 30px;
+    }
+}
+
+/* Standard Mobile/Tablet Response */
+@media (max-width: 900px) {
+    .docs-layout {
+        display: block;
+        padding-top: 70px;
+    }
+    
+    .docs-sidebar {
+        /* Convert to slide-out or static top block? 
+           Current styles made it relative block. We keep that for mobile usability 
+        */
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        background: #0b1121; /* Solid background on mobile */
+    }
+
+    .docs-content {
+        padding: 20px;
+        width: 100%;
+    }
+    
+    .rule-section-content {
+        padding: 20px;
+        background: transparent; /* Remove heavy card feel on mobile? Or keep it. */
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+}
+
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); 
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2); 
+}
+
+
+/* Menu Body Lock - only for when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Allow Body Scroll for Docs Page (New Layout) */
+body.docs-page {
+    overflow-y: auto; 
+    height: auto;
+    background: #0b1121;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ========================================
+   Atmosphere Section
+   ======================================== */
+.atmosphere-section {
+    padding: 20px 5% 80px 5%; /* Moved up: Reduced top padding from 100px */
+    background: #0f1623;
+    position: relative;
+    border-top: none; /* Removed border to blend better */
+}
+
+.atmosphere-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center; 
+}
+
+.atmosphere-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem; /* Reduced from 3rem */
+    color: var(--color-white);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.atmosphere-title span {
+    color: var(--color-accent);
+}
+
+/* CAROUSEL STYLES */
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px; /* Space for arrows */
+}
+
+.carousel-track-container {
+    overflow: hidden; /* Hide slides that are out of view */
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.carousel-slide {
+    min-width: 33.333%; /* Show 3 images at once on Desktop */
+    padding: 0 10px; /* Gap between images */
+    box-sizing: border-box;
+}
+
+/* Arrows */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    padding: 10px 15px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: var(--color-accent);
+    color: #000;
+    box-shadow: 0 0 15px rgba(212, 168, 75, 0.5);
+    border-color: var(--color-accent);
+}
+
+.prev-btn {
+    left: -10px;
+}
+
+.next-btn {
+    right: -10px;
+}
+
+/* Card Styles */
+.atmos-card {
+    position: relative;
+    aspect-ratio: 1 / 1; 
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.atmos-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--color-accent);
+}
+
+.atmos-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    opacity: 0.8;
+}
+
+.atmos-card:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .atmosphere-section {
+        padding: 40px 5%;
+    }
+    
+    .atmosphere-title {
+        font-size: 1.8rem;
+        text-align: center; /* Center title on mobile */
+    }
+
+    .carousel-container {
+        padding: 0; /* Remove side padding on mobile */
+    }
+
+    .carousel-slide {
+        min-width: 80%; /* Show 1 big image (partially see next) or use 100% */
+        /* width: 250px; If you want fixed size */
+    }
+
+    .carousel-track-container {
+        overflow-x: auto; /* Enable native swipe scrolling */
+        scroll-snap-type: x mandatory;
+    }
+
+    .carousel-slide {
+        scroll-snap-align: center;
+    }
+
+    /* Hide arrows on mobile, use swipe instead */
+    .carousel-btn {
+        display: none;
+    }
+    
+    .atmos-card {
+        aspect-ratio: 16 / 9;
+    }
+}
+
